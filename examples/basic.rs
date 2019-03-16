@@ -3,6 +3,7 @@ use dummy::*;
 fn main() {
     // generate random u8
     println!("u8 {} in [MIN, MAX)", u8::dummy(ANY));
+    println!("u8 {} in [MIN, MAX)", u8::any());
 
     // generate random u8 using range
     println!("u8 {} in [3,7)", u8::dummy(3..7));
@@ -18,6 +19,10 @@ fn main() {
         let v = u8::dummy_ref(&sampler);
         println!("sample value {}", v);
     }
+
+    // generate vec with default random length [0..10)
+    let v1 = <Vec<u8>>::any();
+    println!("default random length vec {:?}", v1);
 
     // generate random Vec<u8> with fixed length
     let v1 = <Vec<u8>>::dummy((ANY, 5));
@@ -37,9 +42,8 @@ fn main() {
     println!("fixed length and element config vec {:?}", v1);
     println!("fixed length and element config vec {:?}", v2);
 
-    
     // generate nested vec
-    let v1 = < Vec<Vec<u8>>>::dummy(((ANY, 1..3), 5));
+    let v1 = <Vec<Vec<u8>>>::dummy(((ANY, 1..3), 5));
     let v2 = dummy::vec![u8; 5, 1..3];
     println!("random nested vec {:?}", v1);
     println!("random nested vec {:?}", v2);

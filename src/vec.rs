@@ -1,4 +1,19 @@
-use crate::Dummy;
+use crate::any::Any;
+use crate::{Dummy, ANY};
+
+impl<T> Dummy<Any> for Vec<T>
+where
+    T: Dummy<Any>,
+{
+    fn dummy_ref(_: &Any) -> Self {
+        let len = usize::dummy(0..10);
+        let mut v = Vec::with_capacity(len);
+        for _ in 0..len {
+            v.push(T::dummy(ANY));
+        }
+        v
+    }
+}
 
 impl<T, E, L> Dummy<(E, L)> for Vec<T>
 where

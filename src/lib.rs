@@ -15,13 +15,23 @@ pub trait Dummy<T> {
     }
 }
 
+pub trait DummyAny: Dummy<crate::any::Any> {
+    fn any() -> Self;
+}
+
+impl<T: Dummy<crate::any::Any>> DummyAny for T {
+    fn any() -> Self {
+        Self::dummy(ANY)
+    }
+}
+
 pub mod any {
     pub struct Any;
     pub const ANY: Any = Any;
 }
-pub use self::any::ANY;
+pub use crate::any::ANY;
 
 pub mod distributions {
-    // re-exports
+    /// re-exports from `rand` crate
     pub use rand::distributions::Uniform;
 }
