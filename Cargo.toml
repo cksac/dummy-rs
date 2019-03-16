@@ -2,6 +2,12 @@
 name = "dummy"
 version = "0.1.0"
 authors = ["cksac <cs.cksac@gmail.com>"]
+description = "Type oriented fake data generation"
+keywords = ["faker", "data", "random"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/cksac/dummy-rs"
+homepage = "https://github.com/cksac/dummy-rs"
 edition = "2018"
 
 [dependencies]
