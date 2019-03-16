@@ -1,5 +1,6 @@
 use dummy::*;
 use std::collections::*;
+use std::rc::Rc;
 
 fn main() {
     // generate random u8
@@ -20,6 +21,20 @@ fn main() {
         let v = u8::dummy_ref(&sampler);
         println!("sample value {}", v);
     }
+
+    // containers, Box, Cell, RefCell, Rc, Arc, Mutex, RwLock
+    let rc = <Rc<u8>>::dummy(3..6);
+    println!("Rc {:?}", rc);
+
+    let option = <Option<u32>>::any();
+    println!("Option {:?}", option);
+
+    let result = <Result<u32, u8>>::any();
+    println!("Result {:?}", result);
+
+    // generate Result type uwing config (R, E)
+    let result = <Result<u32, u8>>::dummy((ANY, 0..2));
+    println!("Result {:?}", result);
 
     // collections
     let vec = dummy::vec![u8; 4..8];

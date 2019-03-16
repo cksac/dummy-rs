@@ -89,6 +89,7 @@ macro_rules! float {
     };
 }
 
+any!(());
 any!(bool);
 any!(char);
 

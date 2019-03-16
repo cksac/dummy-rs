@@ -1,8 +1,7 @@
 mod primitives;
 #[macro_use]
 mod collections;
-mod option;
-mod result;
+mod containers;
 
 pub trait Dummy<T> {
     /// take reference to config `T` and genreate Self
