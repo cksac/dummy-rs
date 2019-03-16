@@ -1,6 +1,8 @@
-#[macro_use]
-mod vec;
 mod primitives;
+#[macro_use]
+mod collections;
+mod option;
+mod result;
 
 pub trait Dummy<T> {
     /// take reference to config `T` and genreate Self
