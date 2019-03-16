@@ -57,7 +57,7 @@ fn main() {
     println!("random nested vec {:?}", v1);
     println!("random nested vec {:?}", v2);
 
-    // generated fixed length nested vec [[[u8;2];3];4] with value using samper
+    // generated fixed length nested vec [[[u8;2];3];4] with value using sampler
     let v3 = dummy::vec![u8 as sampler; 4, 3, 2];
     println!("random nested vec {:?}", v3);
 }
