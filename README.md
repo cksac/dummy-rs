@@ -4,8 +4,6 @@
 Type oriented fake data generation library in Rust.
 
 ## Installation
-
-Default:
 ```toml
 [dependencies]
 dummy = "*"
