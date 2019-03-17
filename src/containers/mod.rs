@@ -1,5 +1,7 @@
 use crate::Dummy;
 use std::cell::{Cell, RefCell};
+use std::ops::Deref;
+use std::pin::Pin;
 use std::rc::Rc;
 use std::sync::{Arc, Mutex, RwLock};
 
@@ -26,3 +28,13 @@ container!(Rc);
 container!(Arc);
 container!(Mutex);
 container!(RwLock);
+
+impl<T, U> Dummy<U> for Pin<T>
+where
+    T: Dummy<U> + Deref,
+    <T as Deref>::Target: Unpin,
+{
+    fn dummy_ref(config: &U) -> Self {
+        Pin::new(T::dummy_ref(config))
+    }
+}

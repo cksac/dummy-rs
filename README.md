@@ -50,6 +50,18 @@ fn main() {
     let result = <Result<u32, u8>>::dummy((ANY, 0..2));
     println!("Result {:?}", result);
 
+    // array
+    let array = <[u8; 3]>::any();
+    println!("array {:?}", array);
+    let array = <[[u8; 2]; 3]>::any();
+    println!("nested array {:?}", array);
+
+    // tuple
+    let tuple = <(u8, u32, f32)>::any();
+    println!("tuple {:?}", tuple);
+    let tuple = <(u8, u32, f32)>::dummy((sampler, ANY, 2.5..5.5));
+    println!("tuple with config {:?}", tuple);
+
     // collections
     let vec = dummy::vec![u8; 4..8];
     println!("Vec {:?}", vec);
