@@ -1,6 +1,6 @@
 [package]
 name = "dummy"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["cksac <cs.cksac@gmail.com>"]
 description = "Type oriented fake data generation"
 keywords = ["faker", "data", "random"]
