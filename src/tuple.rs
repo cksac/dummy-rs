@@ -1,6 +1,6 @@
 use crate::{any::Any, Dummy, DummyAny};
 
-macro_rules! tuple_impls {
+macro_rules! tuple_impl {
     ($(
         $Tuple:ident {
             $(($idx:tt) $U:ident -> $T:ident)+
@@ -24,7 +24,7 @@ macro_rules! tuple_impls {
     }
 }
 
-tuple_impls! {
+tuple_impl! {
     Tuple1 {
         (0) T0 -> A
     }

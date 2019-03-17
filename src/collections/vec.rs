@@ -48,13 +48,13 @@ macro_rules! vec {
         ($crate::vec!(@c $e; $($r)*) , $l)
     };
 
-    // use `dummy::any::Any` as config to gernerate elements
+    // use `dummy::any::Any` as config to generate elements
     // the element type must implement `Dummy<Any>`
     ($t:ty; $($l:tt)+) => {
         $crate::vec!($t as ANY; $($l)*)
     };
 
-    // use provided config to gernerate elements
+    // use provided config to generate elements
     ($t:ty as $e:expr; $($l:tt)+) => {
         <$crate::vec!(@ty $t; $($l)*)>::dummy_ref(&$crate::vec!(@c $e; $($l)*))
     };

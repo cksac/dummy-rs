@@ -1,6 +1,6 @@
 use crate::{any::Any, Dummy, DummyAny};
 
-macro_rules! array_impls {
+macro_rules! array_impl {
     {$n:expr, $t:ident $($ts:ident)*} => {
         impl<T> Dummy<[T; $n]> for [T; $n] where T: Clone {
             fn dummy_ref(t: &[T; $n]) -> Self {
@@ -16,7 +16,7 @@ macro_rules! array_impls {
                 [$t::any(), $($ts::any()),*]
             }
         }
-        array_impls!{($n - 1), $($ts)*}
+        array_impl!{($n - 1), $($ts)*}
     };
     {$n:expr,} => {
         impl<T> Dummy<[T; $n]> for [T; $n] where T: Clone {
@@ -34,4 +34,4 @@ macro_rules! array_impls {
     };
 }
 
-array_impls! {32, T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T}
+array_impl! {32, T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T T}

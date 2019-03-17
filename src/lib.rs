@@ -6,10 +6,10 @@ mod containers;
 mod tuple;
 
 pub trait Dummy<T> {
-    /// take reference to config `T` and genreate Self
+    /// take reference to config `T` and generate Self
     fn dummy_ref(config: &T) -> Self;
 
-    /// consume config `T` and genreate Self    
+    /// consume config `T` and generate Self    
     fn dummy(config: T) -> Self
     where
         Self: Sized,

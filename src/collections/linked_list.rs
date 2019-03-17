@@ -49,13 +49,13 @@ macro_rules! linked_list {
         ($crate::linked_list!(@c $e; $($r)*) , $l)
     };
 
-    // use `dummy::any::Any` as config to gernerate elements
+    // use `dummy::any::Any` as config to generate elements
     // the element type must implement `Dummy<Any>`
     ($t:ty; $($l:tt)+) => {
         $crate::linked_list!($t as ANY; $($l)*)
     };
 
-    // use provided config to gernerate elements
+    // use provided config to generate elements
     ($t:ty as $e:expr; $($l:tt)+) => {
         <$crate::linked_list!(@ty $t; $($l)*)>::dummy_ref(&$crate::linked_list!(@c $e; $($l)*))
     };

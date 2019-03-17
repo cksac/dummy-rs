@@ -32,7 +32,7 @@ fn main() {
     let result = <Result<u32, u8>>::any();
     println!("Result {:?}", result);
 
-    // generate Result type uwing config (R, E)
+    // generate Result type using config (R, E)
     let result = <Result<u32, u8>>::dummy((ANY, 0..2));
     println!("Result {:?}", result);
 
@@ -101,11 +101,11 @@ fn main() {
     println!("random nested vec {:?}", v1);
     println!("random nested vec {:?}", v2);
 
-    // generated fixed length nested vec [[[u8;2];3];4] with value using sampler
+    // generate fixed length nested vec [[[u8;2];3];4] with value using sampler
     let v3 = dummy::vec![u8 as sampler; 4, 3, 2];
     println!("random nested vec {:?}", v3);
 
-    // genreated nested type and use `DummyAny::any`
+    // generate nested type and use `DummyAny::any`
     let v: HashMap<u8, BTreeSet<u32>> = DummyAny::any();
     println!("HashMap<u8, BTreeSet<u32>> {:?}", v);
 }

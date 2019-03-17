@@ -49,13 +49,13 @@ macro_rules! binary_heap {
         ($crate::binary_heap!(@c $e; $($r)*) , $l)
     };
 
-    // use `dummy::any::Any` as config to gernerate elements
+    // use `dummy::any::Any` as config to generate elements
     // the element type must implement `Dummy<Any>`
     ($t:ty; $($l:tt)+) => {
         $crate::binary_heap!($t as ANY; $($l)*)
     };
 
-    // use provided config to gernerate elements
+    // use provided config to generate elements
     ($t:ty as $e:expr; $($l:tt)+) => {
         <$crate::binary_heap!(@ty $t; $($l)*)>::dummy_ref(&$crate::binary_heap!(@c $e; $($l)*))
     };
