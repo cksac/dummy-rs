@@ -36,6 +36,14 @@ fn main() {
         println!("sample value {}", v);
     }
 
+    // String
+    let s = String::any();
+    println!("String {}", s);
+    let s = String::dummy(5);
+    println!("Fixed length String {}", s);
+    let s = String::dummy(8..20);
+    println!("Random length String {}", s);    
+
     // containers, Box, Cell, RefCell, Rc, Arc, Mutex, RwLock
     let rc = <Rc<u8>>::dummy(3..6);
     println!("Rc {:?}", rc);

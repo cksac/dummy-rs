@@ -3,6 +3,7 @@ mod primitives;
 mod collections;
 mod array;
 mod containers;
+mod string;
 mod tuple;
 
 pub trait Dummy<T> {
