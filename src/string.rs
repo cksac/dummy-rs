@@ -1,10 +1,18 @@
 use crate::{any::Any, Dummy};
 use rand::distributions::Alphanumeric;
 use rand::distributions::{Distribution, Uniform};
+use rand::seq::SliceRandom;
 use rand::{thread_rng, Rng};
 use std::ops;
 
 const DEFAULT_STR_LEN_RANGE: ops::Range<usize> = 5..20;
+
+impl Dummy<Any> for String {
+    fn dummy_ref(_: &Any) -> Self {
+        let len = usize::dummy(DEFAULT_STR_LEN_RANGE);
+        String::dummy(len)
+    }
+}
 
 impl Dummy<String> for String {
     fn dummy_ref(t: &String) -> Self {
@@ -16,20 +24,13 @@ impl Dummy<String> for String {
     }
 }
 
-impl Dummy<&'static str> for String {
-    fn dummy_ref(t: &&'static str) -> Self {
+impl Dummy<&str> for String {
+    fn dummy_ref(t: &&str) -> Self {
         (**t).to_owned()
     }
 
-    fn dummy(t: &'static str) -> Self {
+    fn dummy(t: &str) -> Self {
         (*t).to_owned()
-    }
-}
-
-impl Dummy<Any> for String {
-    fn dummy_ref(_: &Any) -> Self {
-        let len = usize::dummy(DEFAULT_STR_LEN_RANGE);
-        String::dummy(len)
     }
 }
 
@@ -82,5 +83,27 @@ impl Dummy<ops::RangeToInclusive<usize>> for String {
         let u = Uniform::new_inclusive(std::usize::MIN, range.end);
         let len = u.sample(&mut rand::thread_rng());
         String::dummy(len)
+    }
+}
+
+impl<'a, L> Dummy<(&'a [u8], L)> for String
+where
+    usize: Dummy<L>,
+{
+    fn dummy_ref(config: &(&'a [u8], L)) -> Self {
+        let len = usize::dummy_ref(&config.1);
+        let s: Option<String> = (0..len)
+            .map(|_| Some(*config.0.choose(&mut rand::thread_rng())? as char))
+            .collect();
+        s.unwrap_or_default()
+    }
+}
+
+impl<'a> Dummy<&'a [u8]> for String {
+    fn dummy_ref(charset: &&[u8]) -> Self {
+        String::dummy(*charset)
+    }
+    fn dummy(charset: &[u8]) -> Self {
+        String::dummy((charset, DEFAULT_STR_LEN_RANGE))
     }
 }

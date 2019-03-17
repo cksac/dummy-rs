@@ -38,11 +38,21 @@ fn main() {
 
     // String
     let s = String::any();
-    println!("String {}", s);
+    println!("Random String with default len range {}", s);
+    let s = String::dummy("hello world");
+    println!("Identity String {}", s);
     let s = String::dummy(5);
     println!("Fixed length String {}", s);
     let s = String::dummy(8..20);
-    println!("Random length String {}", s);    
+    println!("Random length String {}", s);
+
+    const CHARSET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789)(*&^%$#@!~";
+    let s = String::dummy(CHARSET);
+    println!("Default random length String from given byte string {}", s);
+    let s = String::dummy((CHARSET, 8));
+    println!("Fixed length String from given byte string {}", s);
+    let s = String::dummy((CHARSET, 8..20));
+    println!("Random length String from given byte string {}", s);
 
     // containers, Box, Cell, RefCell, Rc, Arc, Mutex, RwLock
     let rc = <Rc<u8>>::dummy(3..6);
